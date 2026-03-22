@@ -25,9 +25,12 @@ const CONTENT = {
     bkashStep2: 'Go to "Send Money"',
     bkashStep3: `Send to: ${BKASH_NUMBER}`,
     bkashStep4: "Reference: Eid Salami for Anamul",
+    trxIdLabel: "Transaction ID (TrxID)",
+    trxIdPlaceholder: "Enter 10-digit bKash TrxID",
     bkashConfirm: "✔ I have completed the payment",
     cancel: "Cancel",
     amountLabel: "BDT",
+    trxRequired: "Please enter your Transaction ID to proceed",
   },
   bn: {
     title: "সালামির পরিমাণ বেছে নিন",
@@ -41,10 +44,13 @@ const CONTENT = {
     bkashStep1: "bKash অ্যাপ খুলুন",
     bkashStep2: '"Send Money" তে যান',
     bkashStep3: `পাঠান: ${BKASH_NUMBER}`,
-    bkashStep4: "রেফারেন্স: এনামুলের ঈদ সালামি",
+    bkashStep4: "রেফারেন্স: আনামুলের ঈদ সালামি",
+    trxIdLabel: "ট্রানজেকশন আইডি (TrxID)",
+    trxIdPlaceholder: "১০ ডিজিটের TrxID লিখুন",
     bkashConfirm: "✔ আমি পেমেন্ট সম্পন্ন করেছি",
     cancel: "বাতিল",
     amountLabel: "টাকা",
+    trxRequired: "এগিয়ে যেতে আপনার ট্রানজেকশন আইডি লিখুন",
   },
 };
 
@@ -55,6 +61,7 @@ export default function PaymentSection({
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState("");
   const [name, setName] = useState("");
+  const [trxId, setTrxId] = useState("");
   const [step, setStep] = useState<"select" | "instructions">("select");
   const c = CONTENT[lang];
   const isBn = lang === "bn";
@@ -68,7 +75,7 @@ export default function PaymentSection({
   };
 
   const handleConfirm = () => {
-    if (!finalAmount) return;
+    if (!finalAmount || trxId.length < 8) return;
     onSuccess(finalAmount, name.trim() || "Anonymous");
   };
 
@@ -361,11 +368,43 @@ export default function PaymentSection({
                 )}
               </div>
 
+              {/* TrxID Input */}
+              <div style={{ marginTop: 8 }}>
+                <label
+                  className={isBn ? "bengali-text" : ""}
+                  style={{
+                    display: "block",
+                    fontSize: "0.78rem",
+                    color: "#c9a84c",
+                    marginBottom: 8,
+                    fontWeight: 600,
+                  }}
+                >
+                  {c.trxIdLabel} *
+                </label>
+                <input
+                  id="trx-id-input"
+                  type="text"
+                  placeholder={c.trxIdPlaceholder}
+                  value={trxId}
+                  onChange={(e) => setTrxId(e.target.value)}
+                  className={`field-input${isBn ? " bengali-text" : ""}`}
+                  style={{ borderColor: trxId.length >= 8 ? "rgba(52,211,153,0.5)" : "rgba(226,19,110,0.3)" }}
+                />
+                {!trxId && (
+                  <p style={{ color: "#e2136e", fontSize: "0.7rem", marginTop: 6, fontStyle: "italic" }}>
+                    {c.trxRequired}
+                  </p>
+                )}
+              </div>
+
               {/* Confirm button */}
               <button
                 id="confirm-payment-btn"
                 onClick={handleConfirm}
+                disabled={trxId.length < 8}
                 className={`btn btn-gold${isBn ? " bengali-text" : ""}`}
+                style={{ opacity: trxId.length < 8 ? 0.6 : 1 }}
               >
                 {c.bkashConfirm}
               </button>

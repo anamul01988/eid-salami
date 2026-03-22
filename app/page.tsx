@@ -197,7 +197,7 @@ export default function Home() {
                     className="text-xs"
                     style={{ color: "rgba(201,168,76,0.2)" }}
                   >
-                    eid-salami-anamul.vercel.app
+                    eid-salami-psi.vercel.app
                   </p>
                 </footer>
               </motion.div>

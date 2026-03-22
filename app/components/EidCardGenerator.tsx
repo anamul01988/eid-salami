@@ -15,28 +15,28 @@ const CONTENT = {
     cardMsg1: "You gave Eid Salami to Anamul",
     cardMsg2: (name: string, amount: number) =>
       `${name} gifted ${amount} BDT with love ❤️`,
-    cardFooter: "Eid Mubarak • eid-salami-anamul.vercel.app",
+    cardFooter: "Eid Mubarak • eid-salami-psi.vercel.app",
     download: "⬇ Download Card",
     shareWA: "WhatsApp",
     shareFB: "Facebook",
     copyLink: "📋 Copy Link",
     copied: "Copied!",
     shareMsg: (amount: number) =>
-      `I gave ${amount} BDT Eid Salami to Anamul! 🌙 Show your love too: https://eid-salami-anamul.vercel.app`,
+      `I gave ${amount} BDT Eid Salami to Anamul! 🌙 Show your love too: https://eid-salami-psi.vercel.app`,
   },
   bn: {
     title: "আপনার ঈদ কার্ড",
     cardMsg1: "আপনি এনামুল-কে ঈদ সালামি দিয়েছেন",
     cardMsg2: (name: string, amount: number) =>
       `${name} ভালোবেসে ${amount} টাকা পাঠিয়েছেন ❤️`,
-    cardFooter: "ঈদ মোবারক • eid-salami-anamul.vercel.app",
+    cardFooter: "ঈদ মোবারক • eid-salami-psi.vercel.app",
     download: "⬇ কার্ড ডাউনলোড করুন",
     shareWA: "WhatsApp",
     shareFB: "Facebook",
     copyLink: "📋 লিংক কপি করুন",
     copied: "কপি হয়েছে!",
     shareMsg: (amount: number) =>
-      `আমি এনামুল-কে ${amount} টাকার ঈদ সালামি দিয়েছি! 🌙 আপনিও ভালোবাসা দেখান: https://eid-salami-anamul.vercel.app`,
+      `আমি এনামুল-কে ${amount} টাকার ঈদ সালামি দিয়েছি! 🌙 আপনিও ভালোবাসা দেখান: https://eid-salami-psi.vercel.app`,
   },
 };
 
@@ -186,7 +186,7 @@ export default function EidCardGenerator({
     link.click();
   };
 
-  const shareUrl = "https://eid-salami-anamul.vercel.app";
+  const shareUrl = "https://eid-salami-psi.vercel.app";
   const shareText = c.shareMsg(amount);
 
   const handleShareWA = () => {
